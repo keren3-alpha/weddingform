@@ -54,8 +54,7 @@
     overflow:hidden;
   }
 
-  /* Made the RSVP section perfectly smooth for scrolling */
-  #s-rsvp {
+  #s-rsvp, #s-location {
     padding-top:20px; padding-bottom:60px;
     min-height:100vh; min-height:100dvh;
     display:flex; align-items:center;
@@ -371,54 +370,50 @@
     margin-top: 14px; letter-spacing: 1px;
   }
 
-  /* ================= PHOTO GALLERY MODAL ================= */
-  .gallery-modal {
-    display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(30,20,15,0.95);
-    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); animation: modalFadeIn 0.4s ease;
-    overflow-y: auto; padding: 20px 16px 30px;
+  /* ================= SECTION 5 — LOCATION ================= */
+  #s-location {
+    background: var(--bg-gradient);
+    flex-direction: column; text-align: center;
   }
-  .gallery-modal.open { display: flex; flex-direction: column; align-items: center; }
   
-  .gallery-modal .modal-header {
-    width: 100%; max-width: 600px; display: flex; justify-content: space-between; align-items: center;
-    padding: 12px 20px; position: sticky; top: 0; z-index: 10; background: rgba(30,20,15,0.8);
-    backdrop-filter: blur(10px); border-radius: 12px; margin-bottom: 16px; border: 1px solid rgba(255,255,255,0.1);
-  }
-  .gallery-modal .modal-title {
-    font-family: 'Mrs Saint Delafield', cursive; font-size: 24px; color: var(--gold-light); letter-spacing: 1px;
-  }
-  .gallery-modal .modal-close {
-    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff;
-    width: 44px; height: 44px; border-radius: 50%; font-size: 20px; cursor: pointer;
-    transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;
-  }
-  .gallery-modal .modal-close:hover { background: rgba(255,255,255,0.2); transform: rotate(90deg); }
-  
-  .gallery-grid {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    gap: 12px; max-width: 600px; width: 100%; padding-bottom: 20px;
-  }
-  .gallery-grid .gallery-item {
-    border-radius: 12px; overflow: hidden; aspect-ratio: 1/1; border: 2px solid rgba(255,255,255,0.08);
-    transition: all 0.3s ease; cursor: pointer; position: relative;
-  }
-  .gallery-grid .gallery-item:hover {
-    transform: scale(1.04); border-color: var(--gold); z-index: 2; box-shadow: 0 8px 30px rgba(201,163,90,0.2);
-  }
-  .gallery-grid .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
-  .gallery-grid .gallery-item:hover img { transform: scale(1.08); }
-  .gallery-grid .gallery-item .overlay {
-    position: absolute; inset: 0; background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.4) 100%);
-    opacity: 0; transition: opacity 0.3s ease;
-  }
-  .gallery-grid .gallery-item:hover .overlay { opacity: 1; }
-  .gallery-grid .gallery-item .item-number {
-    position: absolute; bottom: 8px; right: 10px; color: rgba(255,255,255,0.6); font-size: 11px;
-    font-family: 'Cormorant Garamond', serif; letter-spacing: 0.05em; background: rgba(0,0,0,0.4);
-    padding: 2px 10px; border-radius: 12px; backdrop-filter: blur(4px); font-weight: 600;
+  .loc-card {
+    position: relative; z-index: 2; width: min(90vw, 400px);
+    background: #ffffff; border-radius: 16px; padding: 30px 26px 26px;
+    box-shadow: 0 30px 60px -22px rgba(92,26,36,.15); border: 1px solid rgba(201,163,90,0.35);
   }
 
-  /* ================= SECTION 5 — RSVP (STEP FORM) ================= */
+  .loc-card .rsvp-seal-mini { margin: 0 auto 14px; }
+  .loc-title { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 24px; color: var(--burgundy); margin-bottom: 4px; }
+  .loc-sub { font-size: 15px; color: var(--latte); margin-bottom: 22px; font-style: italic; }
+
+  .loc-info {
+    display: flex; flex-direction: column; gap: 16px; margin-bottom: 24px;
+  }
+  .loc-item {
+    display: flex; align-items: flex-start; gap: 14px; text-align: left;
+    background: #fcf9f4; padding: 14px 16px; border-radius: 12px; border: 1px solid rgba(92,26,36,0.08);
+  }
+  .loc-icon {
+    width: 36px; height: 36px; border-radius: 50%; background: rgba(92,26,36,0.05);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    color: var(--burgundy); font-size: 16px;
+  }
+  .loc-text { display: flex; flex-direction: column; gap: 2px; }
+  .loc-text .label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--sage); font-weight: 600; }
+  .loc-text .value { font-family: 'Playfair Display', serif; font-size: 16px; color: var(--espresso); font-weight: 600; }
+  
+  .map-btn {
+    display: inline-flex; align-items: center; justify-content: center; width: 100%;
+    padding: 14px; background: var(--burgundy); color: var(--gold-light);
+    border: none; border-radius: 8px; font-family: 'Playfair Display', serif; font-weight: 600;
+    font-size: 15px; text-decoration: none; transition: background 0.2s, transform 0.15s;
+    box-shadow: 0 10px 24px -12px rgba(92,26,36,.55);
+  }
+  .map-btn i { margin-right: 8px; }
+  .map-btn:hover { background: var(--burgundy-dark); }
+  .map-btn:active { transform: scale(0.98); }
+
+  /* ================= SECTION 6 — RSVP (STEP FORM) ================= */
   #s-rsvp{
     background: linear-gradient(180deg, #f4efe6 0%, #fcf9f4 100%);
     position:relative; overflow-y:auto; -webkit-overflow-scrolling:touch;
@@ -467,7 +462,7 @@
   .rsvp-title{ font-family:'Playfair Display', serif; font-weight:700; font-size:24px; color:var(--burgundy); margin-bottom:4px;}
   .rsvp-sub{ font-size:15px; color:var(--latte); margin-bottom:22px; font-style:italic;}
 
-  /* Pill-shaped Phone Contacts perfectly matching the screenshot */
+  /* Pill-shaped Phone Contacts */
   .phone-contacts {
     display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 24px;
   }
@@ -522,19 +517,6 @@
   .field input:focus{ 
     border-color:var(--burgundy); box-shadow:0 0 0 3px rgba(92,26,36,.1); 
   }
-  
-  .yn-group{ display:flex; gap:10px; }
-  .yn-btn{
-    flex:1; padding:12px 0; border-radius:6px; border:1px solid #c2cfdc;
-    background:#fff; font-family:'Cormorant Garamond', serif; font-size:16px; font-weight:600;
-    color:#4a5568; cursor:pointer; transition:all .2s; min-height:44px;
-  }
-  .yn-btn i { margin-right: 6px; }
-  .yn-btn.selected{ 
-    background:var(--burgundy); border-color:var(--burgundy); color:var(--gold-light); 
-    box-shadow:0 6px 14px -6px rgba(92,26,36,.5);
-  }
-  .yn-btn.selected i { color: var(--gold-light); }
 
   .hidden-fields { 
     max-height: 0; overflow: hidden; 
@@ -616,7 +598,7 @@
   /* Mobile Fixes */
   @media (max-width: 480px) {
     .section { padding: 20px 16px; }
-    .rsvp-card { padding: 24px 18px 20px; margin-top:10px; margin-bottom:10px; }
+    .rsvp-card, .loc-card { padding: 24px 18px 20px; margin-top:10px; margin-bottom:10px; }
     .photo-frame { width: min(60vw, 180px); height: min(60vw, 180px); }
     .countdown { gap: 6px; padding: 10px 12px; }
     .cd-box { width: 48px; }
@@ -624,7 +606,7 @@
     .dots { right: 8px; gap: 8px; }
     .dots button { width: 8px; height: 8px; }
     .dots button.active { width: 10px; height: 10px; }
-    #s-rsvp { padding-top:15px; padding-bottom:40px; min-height:auto; align-items: flex-start; }
+    #s-rsvp, #s-location { padding-top:15px; padding-bottom:40px; min-height:auto; align-items: flex-start; }
     .hidden-fields.show { max-height: 800px; }
     .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 8px; }
     .gallery-modal .modal-title { font-size: 20px; }
@@ -688,8 +670,8 @@
         <span class="event-line reveal stagger-5">at their <span class="highlight-gold">Wedding Service</span></span>
         
         <span class="event-parents reveal stagger-6">
-          The family of <strong>Mr SSEMUWEMBA Moses</strong> and <strong>Nakato Harriet</strong><br>
-          together with the family of <strong>Mr muhoozi Simon Peter</strong> and <strong>Mrs nakafeero ANNET</strong>
+          The family of <strong>Mr Ssemuwemba Moses</strong> and <strong>Nakato Harriet</strong><br>
+          together with the family of <strong>Mr Muhoozi Simon Peter</strong> and <strong>Mrs Nakafeero Annet</strong>
         </span>
 
         <span class="event-date reveal stagger-7">Saturday, November 21st, 2026 <span class="gold-dash">—</span> Busunju</span>
@@ -752,7 +734,41 @@
     </div>
   </section>
 
-  <!-- SECTION 5: RSVP (STEP FORM) -->
+  <!-- SECTION 5: LOCATION -->
+  <section class="section" id="s-location">
+    <div class="corner tl"><svg viewBox="0 0 150 150"><path d="M0,0 Q40,10 45,50 Q50,90 90,95" stroke="#5c1a24" stroke-width="1.2" fill="none" opacity="0.3"/><circle cx="8" cy="8" r="3" fill="#c9a35a"/></svg></div>
+    <div class="corner br"><svg viewBox="0 0 150 150"><path d="M0,0 Q40,10 45,50 Q50,90 90,95" stroke="#5c1a24" stroke-width="1.2" fill="none" opacity="0.3"/><circle cx="8" cy="8" r="3" fill="#c9a35a"/></svg></div>
+    
+    <div class="loc-card reveal-scale stagger-1">
+      <div class="rsvp-seal-mini">📍</div>
+      <div class="loc-title">Venue &amp; Directions</div>
+      <div class="loc-sub">We can't wait to celebrate with you</div>
+
+      <div class="loc-info">
+        <div class="loc-item">
+          <div class="loc-icon"><i class="fas fa-church"></i></div>
+          <div class="loc-text">
+            <span class="label">The Ceremony</span>
+            <span class="value">Busunju Pentecostal Church</span>
+          </div>
+        </div>
+        
+        <div class="loc-item">
+          <div class="loc-icon"><i class="fas fa-glass-cheers"></i></div>
+          <div class="loc-text">
+            <span class="label">The Reception</span>
+            <span class="value">Geoflo Hotel Busunju</span>
+          </div>
+        </div>
+      </div>
+
+      <a href="https://maps.google.com/?q=Busunju+Pentecostal+Church" target="_blank" class="map-btn">
+        <i class="fas fa-map-marked-alt"></i> Get Directions
+      </a>
+    </div>
+  </section>
+
+  <!-- SECTION 6: RSVP (STEP FORM) -->
   <section class="section" id="s-rsvp">
     <div class="corner tl"><svg viewBox="0 0 150 150"><path d="M0,0 Q40,10 45,50 Q50,90 90,95" stroke="#5c1a24" stroke-width="1.2" fill="none" opacity="0.3"/><circle cx="8" cy="8" r="3" fill="#c9a35a"/></svg></div>
     <div class="corner br"><svg viewBox="0 0 150 150"><path d="M0,0 Q40,10 45,50 Q50,90 90,95" stroke="#5c1a24" stroke-width="1.2" fill="none" opacity="0.3"/><circle cx="8" cy="8" r="3" fill="#c9a35a"/></svg></div>
@@ -763,7 +779,7 @@
         <div class="rsvp-title">Kindly RSVP</div>
         <div class="rsvp-sub">For the Wedding Service &amp; Reception</div>
         
-        <!-- Reverted Phone Contacts to exactly match the screenshot -->
+        <!-- Pill-shaped Phone Contacts -->
         <div class="phone-contacts">
           <div class="contact-row">
             <span class="icon"><i class="fas fa-phone-alt"></i></span>
@@ -783,7 +799,7 @@
           <div class="step-dot" id="step-dot-3">3</div>
         </div>
 
-        <!-- STEP 1: Name & Attendance -->
+        <!-- STEP 1: Name & Location -->
         <div class="step-content active" id="step-1">
           <div class="field">
             <label for="guest-name"><i class="fas fa-user"></i> Your Full Name</label>
@@ -791,26 +807,22 @@
           </div>
 
           <div class="field">
-            <label><i class="fas fa-check-circle"></i> Will you attend?</label>
-            <div class="yn-group">
-              <button type="button" class="yn-btn" id="btn-yes"><i class="fas fa-smile"></i> Joyfully Attend</button>
-              <button type="button" class="yn-btn" id="btn-no"><i class="fas fa-frown"></i> Regretfully Decline</button>
-            </div>
+            <label for="guest-location"><i class="fas fa-map-marker-alt"></i> Where are you coming from?</label>
+            <input type="text" id="guest-location" placeholder="e.g., Kampala, Entebbe, etc." autocomplete="address-level2">
           </div>
           
-          <!-- Full width continue button -->
           <button type="button" class="submit-btn btn-full" id="next-1" disabled><i class="fas fa-arrow-right"></i> Continue</button>
         </div>
 
-        <!-- STEP 2: Contact & Guests -->
+        <!-- STEP 2: Telephone & Guests -->
         <div class="step-content" id="step-2">
           <div class="field">
-            <label for="guest-contact"><i class="fas fa-envelope"></i> Email or Phone Number</label>
-            <span class="hint"><i class="fas fa-info-circle"></i> Required so we can send you updates or reach you if needed</span>
-            <input type="text" id="guest-contact" placeholder="e.g., name@email.com or 07XX XXX XXX" autocomplete="email">
+            <label for="guest-phone"><i class="fas fa-phone"></i> Telephone Number</label>
+            <span class="hint"><i class="fas fa-info-circle"></i> Required so we can reach you if needed</span>
+            <input type="text" id="guest-phone" placeholder="e.g., +256 7XX XXX XXX" autocomplete="tel">
           </div>
 
-          <div class="hidden-fields" id="guest-fields">
+          <div class="hidden-fields show" id="guest-fields">
             <div class="field">
               <label><i class="fas fa-users"></i> Number of Guests <span style="font-weight:400;color:var(--sage);font-size:12px;text-transform:none;letter-spacing:0;">(including yourself)</span></label>
               <div class="radio-list">
@@ -846,9 +858,9 @@
             <div class="info-title" style="margin-bottom: 10px;">Review Your Details</div>
             <div style="text-align: left; font-size: 15px; color: var(--espresso); line-height: 1.6;">
               <p style="margin: 4px 0;"><strong>Name:</strong> <span id="summary-name" style="color: var(--burgundy); font-weight: 600;"></span></p>
-              <p style="margin: 4px 0;"><strong>Attending:</strong> <span id="summary-attending" style="color: var(--burgundy); font-weight: 600;"></span></p>
-              <p style="margin: 4px 0;" id="summary-guests-row"><strong>Guests:</strong> <span id="summary-guests" style="color: var(--burgundy); font-weight: 600;"></span></p>
-              <p style="margin: 4px 0;"><strong>Contact:</strong> <span id="summary-contact" style="color: var(--burgundy); font-weight: 600;"></span></p>
+              <p style="margin: 4px 0;"><strong>Coming From:</strong> <span id="summary-location" style="color: var(--burgundy); font-weight: 600;"></span></p>
+              <p style="margin: 4px 0;"><strong>Phone:</strong> <span id="summary-phone" style="color: var(--burgundy); font-weight: 600;"></span></p>
+              <p style="margin: 4px 0;"><strong>Guests:</strong> <span id="summary-guests" style="color: var(--burgundy); font-weight: 600;"></span></p>
             </div>
           </div>
 
@@ -1066,13 +1078,10 @@
 
   // ===== RSVP STEP FORM LOGIC =====
   let currentStep = 1;
-  let attending = null;
   
   const nameInput = document.getElementById('guest-name');
-  const contactInput = document.getElementById('guest-contact');
-  const btnYes = document.getElementById('btn-yes');
-  const btnNo = document.getElementById('btn-no');
-  const guestFields = document.getElementById('guest-fields');
+  const locationInput = document.getElementById('guest-location');
+  const phoneInput = document.getElementById('guest-phone');
   
   const next1Btn = document.getElementById('next-1');
   const next2Btn = document.getElementById('next-2');
@@ -1088,12 +1097,10 @@
   const stepDot3 = document.getElementById('step-dot-3');
 
   function goToStep(step) {
-    // Hide all steps
     document.querySelectorAll('.step-content').forEach(el => {
       el.classList.remove('active');
     });
     
-    // Show target step
     const targetStep = document.getElementById(`step-${step}`);
     targetStep.classList.add('active');
     currentStep = step;
@@ -1118,52 +1125,30 @@
       
       // Populate Summary
       document.getElementById('summary-name').textContent = nameInput.value.trim();
-      document.getElementById('summary-attending').textContent = attending === 'yes' ? 'Yes, Joyfully Attending' : 'Regretfully Declining';
-      document.getElementById('summary-contact').textContent = contactInput.value.trim();
+      document.getElementById('summary-location').textContent = locationInput.value.trim();
+      document.getElementById('summary-phone').textContent = phoneInput.value.trim();
       
-      if (attending === 'yes') {
-        document.getElementById('summary-guests-row').style.display = 'block';
-        const selectedRadio = document.querySelector('input[name="guest_count"]:checked');
-        document.getElementById('summary-guests').textContent = selectedRadio ? selectedRadio.value : '1';
-      } else {
-        document.getElementById('summary-guests-row').style.display = 'none';
-      }
+      const selectedRadio = document.querySelector('input[name="guest_count"]:checked');
+      document.getElementById('summary-guests').textContent = selectedRadio ? selectedRadio.value : '1';
     }
   }
 
-  // Step 1 Validation
+  // Step 1 Validation (Name & Location)
   function validateStep1() {
     const hasName = nameInput.value.trim().length > 0;
-    const hasAttending = attending !== null;
-    next1Btn.disabled = !(hasName && hasAttending);
+    const hasLocation = locationInput.value.trim().length > 0;
+    next1Btn.disabled = !(hasName && hasLocation);
   }
 
-  // Step 2 Validation
+  // Step 2 Validation (Phone)
   function validateStep2() {
-    const hasContact = contactInput.value.trim().length > 0;
-    next2Btn.disabled = !hasContact;
+    const hasPhone = phoneInput.value.trim().length > 0;
+    next2Btn.disabled = !hasPhone;
   }
 
   nameInput.addEventListener('input', validateStep1);
-  
-  btnYes.addEventListener('click', function() {
-    attending = 'yes';
-    btnYes.classList.add('selected');
-    btnNo.classList.remove('selected');
-    guestFields.classList.add('show');
-    validateStep1();
-  });
-
-  btnNo.addEventListener('click', function() {
-    attending = 'no';
-    btnNo.classList.add('selected');
-    btnYes.classList.remove('selected');
-    guestFields.classList.remove('show');
-    document.getElementById('g-1').checked = true;
-    validateStep1();
-  });
-
-  contactInput.addEventListener('input', validateStep2);
+  locationInput.addEventListener('input', validateStep1);
+  phoneInput.addEventListener('input', validateStep2);
 
   // Navigation
   next1Btn.addEventListener('click', () => goToStep(2));
@@ -1182,9 +1167,9 @@
 
     const entry = {
       name: nameInput.value.trim(),
-      attending: attending,
-      guests: attending === 'yes' ? guestCountValue : "0",
-      contact: contactInput.value.trim(),
+      location: locationInput.value.trim(),
+      phone: phoneInput.value.trim(),
+      guests: guestCountValue,
       submittedAt: new Date().toISOString()
     };
 
@@ -1205,13 +1190,9 @@
       ty.classList.add('show');
       
       const firstName = entry.name.split(' ')[0];
-      if (attending === 'yes') {
-        document.getElementById('ty-heading').textContent = '🎉 See you there, ' + firstName + '!';
-        document.getElementById('ty-text').textContent = "We've received your RSVP and can't wait to celebrate with you.";
-      } else {
-        document.getElementById('ty-heading').textContent = "😢 We'll miss you, " + firstName;
-        document.getElementById('ty-text').textContent = "Thank you for letting us know. We'll keep you in our prayers and share updates with you via your contact info.";
-      }
+      document.getElementById('ty-heading').textContent = '🎉 Thank you, ' + firstName + '!';
+      document.getElementById('ty-text').textContent = "We've received your RSVP and can't wait to celebrate with you.";
+      
     } catch(error) {
       console.error('Error submitting RSVP:', error);
       errorMsg.textContent = 'Something went wrong. Please check your connection and try again.';
